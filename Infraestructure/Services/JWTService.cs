@@ -46,7 +46,7 @@ namespace Infraestructure.Services
 
 
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                return new Tokens { Token = tokenHandler.WriteToken(token), RefreshToken = GenerateRefreshToken() };
+                return new Tokens { Token = $"Bearer {tokenHandler.WriteToken(token)}", RefreshToken = GenerateRefreshToken() };
             }
             catch (Exception e)
             {

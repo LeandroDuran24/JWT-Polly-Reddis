@@ -35,7 +35,7 @@ namespace Server.Controllers
             }
             catch (Exception e)
             {
-                throw e;
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Server.Controllers
             }
             catch (Exception e)
             {
-                throw e;
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
