@@ -7,6 +7,7 @@ using System.Text;
 using Polly;
 using Polly.Extensions.Http;
 using Infraestructure.Helper;
+using StackExchange.Redis;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,7 +50,9 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
+// REGISTRAR REDIS
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+ConnectionMultiplexer.Connect(builder.Configuration.GetValue<string>("REDISUrl")));
 
 //LOGGER
 var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
